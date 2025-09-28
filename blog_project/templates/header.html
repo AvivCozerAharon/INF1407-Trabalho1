@@ -1,0 +1,18 @@
+<header
+    style="background-color: white; padding: 2rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <img src="/media/imagens_capa/logo-fn.jpg" alt="Logo" style="height: 50px;">
+    <div>
+        {% if user.is_authenticated %}
+        <a href="/admin_app/adicionar/"
+            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Adicionar
+            Notícias</a>
+        <a href="/logout"
+            style="text-decoration: none; color: white; background-color: #FF0000; padding: 0.5rem 1rem; border-radius: 20px;">Logout</a>
+        {% else %}
+        <a href="/"
+            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px;">Home</a>
+        <a href="/login"
+            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px;">Login</a>
+        {% endif %}
+    </div>
+</header>
