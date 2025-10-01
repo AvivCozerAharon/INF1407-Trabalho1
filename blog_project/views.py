@@ -36,4 +36,5 @@ def create_account(request):
     return render(request, 'create_account.html', {'form': form})
 @login_required
 def profile(request):
-    return render(request, 'profile.html')  
+    user = request.user
+    return render(request, 'profile.html',{'user': user})  
