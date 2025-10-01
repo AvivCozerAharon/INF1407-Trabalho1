@@ -1,0 +1,27 @@
+# Ambiente virtual
+venv/
+.env
+
+# Bytecode / compilados Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*$py.class
+
+# Banco de dados SQLite
+db.sqlite3
+
+# Arquivos de migração (caso não queira versionar)
+#migrations/
+
+# Configurações locais
+*.log
+*.pot
+*.swp
+.DS_Store
+
+# Arquivos de IDE / editor
+.vscode/
+.idea/

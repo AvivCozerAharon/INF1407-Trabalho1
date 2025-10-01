@@ -28,6 +28,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('noticia/<int:noticia_id>/', views.noticia_detalhe, name='noticia_detalhe'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('adicionar/', views.adicionar_noticia, name='adicionar_noticia'),
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

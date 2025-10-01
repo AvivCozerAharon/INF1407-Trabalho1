@@ -1,9 +1,11 @@
 <header
     style="background-color: white; padding: 2rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-    <img src="/media/imagens_capa/logo-fn.jpg" alt="Logo" style="height: 50px;">
-    <div>
+        <a href="/">
+            <img src="/media/imagens_capa/logo-fn.jpg" alt="Logo" style="height: 50px;">
+        </a>    
+        <div>
         {% if user.is_authenticated %}
-        <a href="/admin_app/adicionar/"
+        <a href="/adicionar"
             style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Adicionar
             Notícias</a>
         <a href="/logout"
