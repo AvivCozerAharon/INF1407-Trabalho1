@@ -6,93 +6,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom, #000EF0, #000000);
             background-size: cover;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 0 10rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #00ffff;
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10rem 10%;
+            gap: 5rem;
+            margin-top: 10px;
+        }
+
+        /* TITULO */
         .title-container {
-            color: #ffff;
+            color: #fff;
             font-size: 3rem;
             font-weight: bold;
             max-width: 50%;
         }
 
-        .login-container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .login-container h1 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .login-container form {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .login-container label {
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .login-container input {
-            margin-bottom: 1rem;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            width: 100%;
-        }
-
-        .login-container button {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            background-color: #000EF0;
-            color: #fff;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .login-container button:hover {
-            background-color: #000EF0;
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+                padding: 12rem 5%;
+            }
+            .title-container {
+                max-width: 100%;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="title-container">
-        <h1>FutureNow, o futuro do blog começa aqui!</h1>
-    </div>
-    <div class="login-container">
-        <h1>Login</h1>
-        {% if form %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Entrar</button>
-        </form>
-        {% else %}
-        <p>Erro ao carregar o formulário de login.</p>
-        {% endif %}
+    <!-- HEADER -->
+    {% include 'header.html' %}
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="main-content">
+        <div class="title-container">
+            <h1>FutureNow, o futuro do blog começa aqui!</h1>
+        </div>
+        <div class="card">
+            <h1>Login</h1>
+            {% if form %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Entrar</button>
+            </form>
+            <a href="forgot_password">Esqueceu a senha? Clique aqui!</a>
+            <br>
+            <br>
+            
+            <a href="{% url 'create_account' %}">Ainda não tem conta criada? Clique aqui!</a>
+            {% else %}
+            <p>Erro ao carregar o formulário de login.</p>
+            {% endif %}
+        </div>
     </div>
 </body>
 

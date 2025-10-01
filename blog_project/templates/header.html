@@ -1,3 +1,54 @@
+<style>
+            .card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .card form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card form label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card form input,
+        .card form textarea,
+        .card form button {
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .card form button {
+            background-color: #000EF0;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card form button:hover {
+            background-color: #000EF0;
+        }
+
+</style>
 <header
     style="background-color: white; padding: 2rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <a href="/">
@@ -8,8 +59,15 @@
         <a href="/adicionar"
             style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Adicionar
             Notícias</a>
-        <a href="/logout"
-            style="text-decoration: none; color: white; background-color: #FF0000; padding: 0.5rem 1rem; border-radius: 20px;">Logout</a>
+        <a href="/profile"
+            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Perfil</a>
+        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit"
+                style="text-decoration: none; color: white; background-color: #FF0000; padding: 0.5rem 1rem; border-radius: 20px; border: none; cursor: pointer;">
+                Logout
+            </button>
+        </form>        
         {% else %}
         <a href="/"
             style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px;">Home</a>

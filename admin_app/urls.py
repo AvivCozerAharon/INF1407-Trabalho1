@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from . import views  # importa suas views locais
 
 urlpatterns = [
-    path('adicionar/', views.adicionar_noticia, name='adicionar_noticia'),
+    path('', views.dashboard, name='dashboard'),  # pelo menos uma rota
 ]

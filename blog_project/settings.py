@@ -127,4 +127,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redireciona para a página de adicionar notícias após o login
-LOGIN_REDIRECT_URL = '/admin_app/adicionar/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
