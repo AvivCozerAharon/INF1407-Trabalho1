@@ -1,5 +1,10 @@
 <style>
-            .card {
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .card {
             background: #fff;
             padding: 2rem;
             border-radius: 20px;
@@ -51,8 +56,47 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(to bottom, #000EF0, #000000);
         }
+        .actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px; /* espaço entre botões */
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px; /* espaço entre ícone e texto */
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn i {
+            font-size: 14px;
+        }
+
+        .btn-edit {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <header
     style="background-color: white; padding: 2rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <a href="/">

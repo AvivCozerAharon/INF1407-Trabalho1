@@ -11,10 +11,10 @@
         }
 
         .container {
+            margin-top: 25px;
             display: flex;
             justify-content: center;   /* horizontal */
             align-items: center;       /* vertical */
-            height: calc(100vh - 60px); /* altura da tela menos a altura do header */
         }
 
     </style>
@@ -24,7 +24,7 @@
     {% include 'header.html' %}
     <div class="container">
         <div class="card">
-            <h1>Criar Conta</h1>
+            <h1>Criar Nova Conta</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}

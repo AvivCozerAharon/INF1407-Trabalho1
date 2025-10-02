@@ -32,6 +32,9 @@ urlpatterns = [
     path('adicionar/', views.adicionar_noticia, name='adicionar_noticia'),
     path('create_account/', views.create_account, name='create_account'),
     path('profile/', views.profile, name='profile'),
+    path('noticia/<int:pk>/editar/', views.editar_noticia, name='editar_noticia'),
+    path('noticia/<int:pk>/apagar/', views.apagar_noticia, name='apagar_noticia'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

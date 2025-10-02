@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Página Inicial</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        color: #fff;
-    }
 
     .container {
         padding: 2rem;
@@ -32,6 +26,7 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
+        height: 500px;
         flex-direction: column;
     }
 
@@ -74,6 +69,19 @@
     .news_card-content small {
         color: #999;
     }
+    .conteudo-preview {
+        color: #333;
+        display: -webkit-box;        /* necessário para -webkit-line-clamp */
+        display: box;                /* fallback mais antigo */
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+
+        -webkit-line-clamp: 3;       /* Chrome, Safari, Edge */
+        line-clamp: 3;               /* padrão emergente */
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
     @media (max-width: 768px) {
         .news_card img {
@@ -94,8 +102,23 @@
                     {% endif %}
                     <div class="news_card-content">
                         <h3>{{ noticia.titulo }}</h3>
-                        <p style="color: black">{{ noticia.conteudo|truncatechars:100|safe }}</p>
-                        <small>Publicado em: {{ noticia.data_publicacao }}</small>
+                        <p class="conteudo-preview">
+                            {{ noticia.conteudo|striptags|truncatechars:150 }}
+                        </p>
+                        <small>
+                            📅 {{ noticia.data_publicacao|date:"d/m/Y H:i" }} <br>
+                            ✍️ {{ noticia.autor_nome }}
+                        </small>
+                        {% if noticia.autor_id == request.user.id %}
+                            <div class="actions">
+                                <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                                <a href="{% url 'apagar_noticia' noticia.id %}" class="btn btn-delete">
+                                    <i class="fas fa-trash-alt"></i> Apagar
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
                 </a>
             </div>

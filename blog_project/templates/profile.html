@@ -7,12 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
+
         .profile-container {
             max-width: 600px;
             margin: 50px auto;
@@ -21,14 +16,79 @@
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-        h1 {
-            text-align: center;
+
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        p {
-            font-size: 1.1rem;
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
-    </style>
-</head>
+
+        .news_card {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            min-height: 300px;
+            width: 300px;
+            flex-direction: column;
+        }
+
+        .news_card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .news_card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news_card:hover img {
+            transform: scale(1.05);
+        }
+
+        .news_card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news_card-content h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: #222;
+        }
+
+        .news_card-content p {
+            color: #555;
+            margin: 0.5rem 0 1rem;
+            line-height: 1.4;
+        }
+
+        .news_card-content small {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .news_card img {
+                height: 160px;
+            }
+        }
+</style></head>
+
 <body>
     <div class="profile-container">
         <h1>Perfil de {{ user.username }}</h1>
@@ -36,5 +96,37 @@
         <p><strong>Email:</strong> {{ user.email }}</p>
         <p><strong>Data de registro:</strong> {{ user.date_joined|date:"d/m/Y H:i" }}</p>
     </div>
+    <div style="height: 60px;"></div> <!-- Espaço para o header fixo -->
+    <h1 style="text-align: center; margin-top: 20px;color:white">Minhas Notícias</h1>
+    <div class="container">
+        <div class="grid">
+            {% for noticia in noticias %}
+            <div class="news_card">
+                <a href="{% url 'noticia_detalhe' noticia.id %}" style="text-decoration: none; color: inherit;">
+                    {% if noticia.imagem_capa %}
+                    <img src="{{ noticia.imagem_capa.url }}" alt="Imagem da notícia">
+                    {% endif %}
+                    <div class="news_card-content">
+                        <h3>{{ noticia.titulo }}</h3>
+
+                        <small>
+                            📅 {{ noticia.data_publicacao|date:"d/m/Y H:i" }} <br>
+                        </small>
+                        {% if noticia.autor_id == request.user.id %}
+                            <div class="actions">
+                                <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                                <a href="{% url 'apagar_noticia' noticia.id %}" class="btn btn-delete">
+                                    <i class="fas fa-trash-alt"></i> Apagar
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>Nenhuma notícia disponível.</p>
+            {% endfor %}
 </body>
 </html>
