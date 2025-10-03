@@ -1,126 +1,127 @@
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        .card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 500px;
-        }
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
 
-        .card h1 {
-            text-align: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            color: #333;
-        }
+    .card {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 500px;
+    }
 
-        .card form {
-            display: flex;
-            flex-direction: column;
-        }
+    .card h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: #333;
+    }
 
-        .card form label {
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
-        }
+    .card form {
+        display: flex;
+        flex-direction: column;
+    }
 
-        .card form input,
-        .card form textarea,
-        .card form button {
-            margin-bottom: 1rem;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            width: 100%;
-        }
+    .card form label {
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #333;
+    }
 
-        .card form button {
-            background-color: #000EF0;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+    .card form input,
+    .card form textarea,
+    .card form button {
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 100%;
+    }
 
-        .card form button:hover {
-            background-color: #000EF0;
-        }
-        body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom, #000EF0, #000000);
-        }
-        .actions {
-            margin-top: 10px;
-            display: flex;
-            gap: 10px; /* espaço entre botões */
-        }
+    .card form button {
+        background-color: #0000FF;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px; /* espaço entre ícone e texto */
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.2s ease-in-out;
-        }
+    .card form button:hover {
+        background-color: #0000FF;
+    }
 
-        .btn i {
-            font-size: 14px;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        .btn-edit {
-            background-color: #3498db;
-            color: white;
-        }
+    .actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+    }
 
-        .btn-delete {
-            background-color: #e74c3c;
-            color: white;
-        }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+        transition: all 0.2s ease-in-out;
+    }
 
-        .btn:hover {
-            opacity: 0.85;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
+    .btn i {
+        font-size: 14px;
+    }
 
+    .btn-edit {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <header
     style="background-color: white; padding: 2rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-        <a href="/">
-            <img src="/media/imagens_capa/logo-fn.jpg" alt="Logo" style="height: 50px;">
-        </a>    
-        <div>
+    <a href="/">
+        <img src="/media/imagens_capa/logo-fn.jpg" alt="Logo" style="height: 50px;">
+    </a>
+    <div>
         {% if user.is_authenticated %}
         <a href="/adicionar"
-            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Adicionar
+            style="text-decoration: none; color: white; background-color: #0000FF; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Adicionar
             Notícias</a>
         <a href="/profile"
-            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Perfil</a>
+            style="text-decoration: none; color: white; background-color: #0000FF; padding: 0.5rem 1rem; border-radius: 20px; margin-right: 1rem;">Perfil</a>
         <form method="post" action="{% url 'logout' %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit"
                 style="text-decoration: none; color: white; background-color: #FF0000; padding: 0.5rem 1rem; border-radius: 20px; border: none; cursor: pointer;">
                 Logout
             </button>
-        </form>        
+        </form>
         {% else %}
         <a href="/"
-            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px;">Home</a>
+            style="text-decoration: none; color: white; background-color: #0000FF; padding: 0.5rem 1rem; border-radius: 20px;">Home</a>
         <a href="/login"
-            style="text-decoration: none; color: white; background-color: #000EF0; padding: 0.5rem 1rem; border-radius: 20px;">Login</a>
+            style="text-decoration: none; color: white; background-color: #0000FF; padding: 0.5rem 1rem; border-radius: 20px;">Login</a>
         {% endif %}
     </div>
 </header>
