@@ -5,90 +5,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Página Inicial</title>
-<style>
-
-    .container {
-        padding: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-
-    .news_card {
-        background: linear-gradient(135deg, #ffffff, #f0f0f0);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        height: 500px;
-        flex-direction: column;
-    }
-
-    .news_card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-    }
-
-    .news_card img {
-        width: 100%;
-        max-height: 200px;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .news_card:hover img {
-        transform: scale(1.05);
-    }
-
-    .news_card-content {
-        padding: 1.5rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .news_card-content h3 {
-        margin-top: 0;
-        font-size: 1.4rem;
-        color: #222;
-    }
-
-    .news_card-content p {
-        color: #555;
-        margin: 0.5rem 0 1rem;
-        line-height: 1.4;
-    }
-
-    .news_card-content small {
-        color: #999;
-    }
-    .conteudo-preview {
-        color: #333;
-        display: -webkit-box;        /* necessário para -webkit-line-clamp */
-        display: box;                /* fallback mais antigo */
-        -webkit-box-orient: vertical;
-        box-orient: vertical;
-
-        -webkit-line-clamp: 3;       /* Chrome, Safari, Edge */
-        line-clamp: 3;               /* padrão emergente */
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    @media (max-width: 768px) {
-        .news_card img {
-            height: 160px;
+    <style>
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-    }
-</style></head>
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .news_card {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news_card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .news_card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news_card:hover img {
+            transform: scale(1.05);
+        }
+
+        .news_card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news_card-content h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #333;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news_card-content p {
+            color: #666;
+            margin: 0.5rem 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news_card-content small {
+            color: #999;
+        }
+
+        .conteudo-preview {
+            color: #333;
+            display: -webkit-box;
+            display: box;
+            -webkit-box-orient: vertical;
+            box-orient: vertical;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .pagination .btn {
+            background: #007bff;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .pagination .btn:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .news_card img {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
 
 <body>
     {% include 'header.html' %}
@@ -110,14 +145,14 @@
                             ✍️ {{ noticia.autor_nome }}
                         </small>
                         {% if noticia.autor_id == request.user.id %}
-                            <div class="actions">
-                                <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <a href="{% url 'apagar_noticia' noticia.id %}" class="btn btn-delete">
-                                    <i class="fas fa-trash-alt"></i> Apagar
-                                </a>
-                            </div>
+                        <div class="actions">
+                            <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="{% url 'apagar_noticia' noticia.id %}" class="btn btn-delete">
+                                <i class="fas fa-trash-alt"></i> Apagar
+                            </a>
+                        </div>
                         {% endif %}
                     </div>
                 </a>
@@ -125,6 +160,18 @@
             {% empty %}
             <p>Nenhuma notícia disponível.</p>
             {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if noticias.has_previous %}
+            <a href="?page={{ noticias.previous_page_number }}" class="btn">&laquo; Anterior</a>
+            {% endif %}
+
+            <span>Página {{ noticias.number }} de {{ noticias.paginator.num_pages }}</span>
+
+            {% if noticias.has_next %}
+            <a href="?page={{ noticias.next_page_number }}" class="btn">Próxima &raquo;</a>
+            {% endif %}
         </div>
     </div>
 </body>

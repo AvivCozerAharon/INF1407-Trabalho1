@@ -4,15 +4,21 @@ from admin_app.models import Noticia
 from .forms import NoticiaForm,CreateAccontForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 def home(request):
-    noticias = Noticia.objects.all().order_by('-data_publicacao')
-    for n in noticias:
+    noticias_list = Noticia.objects.all().order_by('-data_publicacao')
+    for n in noticias_list:
         try:
             user = User.objects.get(id=n.autor_id)
             n.autor_nome = f"{user.first_name} {user.last_name}"
         except User.DoesNotExist:
             n.autor_nome = "Desconhecido"
+
+    paginator = Paginator(noticias_list, 9)
+    page_number = request.GET.get('page')
+    noticias = paginator.get_page(page_number)
+
     return render(request, 'home.html', {'noticias': noticias})
 
 def noticia_detalhe(request, noticia_id):
