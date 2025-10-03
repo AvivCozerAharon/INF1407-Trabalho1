@@ -95,6 +95,7 @@
         <p><strong>Nome:</strong> {{ user.get_full_name }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
         <p><strong>Data de registro:</strong> {{ user.date_joined|date:"d/m/Y H:i" }}</p>
+        <a href="{% url 'password_reset' %}">Alterar minha senha</a>
     </div>
     <div style="height: 60px;"></div> <!-- Espaço para o header fixo -->
     <h1 style="text-align: center; margin-top: 20px;color:white">Minhas Notícias</h1>
