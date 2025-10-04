@@ -135,11 +135,14 @@
         <div class="grid">
             {% for noticia in noticias %}
             <div class="news_card">
+                <!-- Cartão individual para cada notícia -->
                 <a href="{% url 'noticia_detalhe' noticia.id %}" style="text-decoration: none; color: inherit;">
                     {% if noticia.imagem_capa %}
+                    <!-- Exibição da imagem de capa, se disponível -->
                     <img src="{{ noticia.imagem_capa.url }}" alt="Imagem da notícia">
                     {% endif %}
                     <div class="news_card-content">
+                        <!-- Conteúdo textual do cartão -->
                         <h3>{{ noticia.titulo }}</h3>
                         <p class="conteudo-preview">
                             {{ noticia.conteudo|striptags|truncatechars:150 }}
@@ -150,6 +153,7 @@
                         </small>
                         {% if noticia.autor_id == request.user.id %}
                         <div class="actions">
+                            <!-- Ações disponíveis para o autor da notícia, ou seja so o usario que e o escrito da noticia consegue ver -->
                             <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
@@ -167,12 +171,11 @@
         </div>
 
         <div class="pagination">
+            <!-- Navegação entre páginas de noticias (9 noticias por pagina) -->
             {% if noticias.has_previous %}
             <a href="?page={{ noticias.previous_page_number }}" class="btn">&laquo; Anterior</a>
             {% endif %}
-
             <span>Página {{ noticias.number }} de {{ noticias.paginator.num_pages }}</span>
-
             {% if noticias.has_next %}
             <a href="?page={{ noticias.next_page_number }}" class="btn">Próxima &raquo;</a>
             {% endif %}

@@ -47,6 +47,7 @@
 </head>
 
 <body>
+    <!-- Este exibe os detalhes de uma notícia específica, incluindo imagem de capa, título, conteúdo e data de publicação. -->
     <div class="container">
         {% if noticia.imagem_capa %}
         <img src="{{ noticia.imagem_capa.url }}" alt="{{ noticia.titulo }}">

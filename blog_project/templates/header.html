@@ -160,12 +160,14 @@
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<!-- Início do cabeçalho da página -->
 <header>
     <a href="/">
         <img src="/media/imagens_capa/logo-fn.jpg" alt="Logo" style="height: 50px;">
     </a>
     <div>
         {% if user.is_authenticated %}
+        <!-- Links para usuários autenticados -->
         <a href="/adicionar" class="btn-header">Adicionar Notícias</a>
         <a href="/profile" class="btn-profile">
             <i class="fas fa-user"></i>
@@ -177,6 +179,7 @@
             </button>
         </form>
         {% else %}
+        <!-- Links para usuários não autenticados -->
         <a href="/" class="btn-header">Home</a>
         <a href="/login" class="btn-header">Login</a>
         {% endif %}

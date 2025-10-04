@@ -22,23 +22,51 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    # Rota para o painel administrativo do Django
     path('admin/', admin.site.urls),
-    path('admin_app/', include('admin_app.urls')),
-    path('', views.home, name='home'),
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('noticia/<int:noticia_id>/', views.noticia_detalhe, name='noticia_detalhe'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('ckeditor5/', include('django_ckeditor_5.urls')),  # upload    
-    path('adicionar/', views.adicionar_noticia, name='adicionar_noticia'),
-    path('create_account/', views.create_account, name='create_account'),
-    path('profile/', views.profile, name='profile'),
-    path('noticia/<int:pk>/editar/', views.editar_noticia, name='editar_noticia'),
-    path('noticia/<int:pk>/apagar/', views.apagar_noticia, name='apagar_noticia'),
-    path("password_reset/", auth_views.PasswordResetView.as_view(template_name="password_reset_form.html",email_template_name="password_reset_email.html",subject_template_name="password_reset_subject.txt"), name="password_reset"),
-    path("password_reset/done/", auth_views.PasswordResetDoneView.as_view(template_name="password_reset_done.html"), name="password_reset_done"),
-    path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_confirm.html"), name="password_reset_confirm"),
-    path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_complete.html"), name="password_reset_complete"),
 
+    # Rota para as URLs do aplicativo admin_app
+    path('admin_app/', include('admin_app.urls')),
+
+    # Página inicial do blog
+    path('', views.home, name='home'),
+
+    # Página de login do usuário
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+
+    # Detalhes de uma notícia específica, identificada pelo ID
+    path('noticia/<int:noticia_id>/', views.noticia_detalhe, name='noticia_detalhe'),
+
+    # Rota para logout do usuário
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    # Página para adicionar uma nova notícia
+    path('adicionar/', views.adicionar_noticia, name='adicionar_noticia'),
+
+    # Página para criar uma nova conta de usuário
+    path('create_account/', views.create_account, name='create_account'),
+
+    # Página de perfil do usuário
+    path('profile/', views.profile, name='profile'),
+
+    # Página para editar uma notícia específica, identificada pelo ID
+    path('noticia/<int:pk>/editar/', views.editar_noticia, name='editar_noticia'),
+
+    # Página para apagar uma notícia específica, identificada pelo ID
+    path('noticia/<int:pk>/apagar/', views.apagar_noticia, name='apagar_noticia'),
+
+    # Rota para solicitar redefinição de senha
+    path("password_reset/", auth_views.PasswordResetView.as_view(template_name="password_reset_form.html",email_template_name="password_reset_email.html",subject_template_name="password_reset_subject.txt"), name="password_reset"),
+
+    # Página de confirmação de envio do email de redefinição de senha
+    path("password_reset/done/", auth_views.PasswordResetDoneView.as_view(template_name="password_reset_done.html"), name="password_reset_done"),
+
+    # Página para redefinir a senha, acessada pelo link enviado no email
+    path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_confirm.html"), name="password_reset_confirm"),
+
+    # Página de confirmação de redefinição de senha concluída
+    path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_complete.html"), name="password_reset_complete"),
 ]
 
+# Configuração para servir arquivos de mídia durante o desenvolvimento
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

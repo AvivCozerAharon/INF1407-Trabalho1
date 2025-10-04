@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 
+# Exibe a página inicial do blog, listando as notícias mais recentes com paginação.
 def home(request):
     noticias_list = Noticia.objects.all().order_by('-data_publicacao')
     for n in noticias_list:
@@ -21,11 +22,14 @@ def home(request):
 
     return render(request, 'home.html', {'noticias': noticias})
 
+# Exibe os detalhes de uma notícia específica, identificada pelo ID.
 def noticia_detalhe(request, noticia_id):
     noticia = get_object_or_404(Noticia, id=noticia_id)
     return render(request, 'noticia_detalhe.html', {'noticia': noticia})
 
+# Permite que um usuário autenticado adicione uma nova notícia ao blog.
 @login_required
+
 def adicionar_noticia(request):
     if request.method == 'POST':
         user_id = request.user.id
@@ -40,6 +44,7 @@ def adicionar_noticia(request):
 
     return render(request, 'adicionar_noticia.html', {'form': form})
 
+# Permite que um novo usuário crie uma conta no sistema.
 def create_account(request):
     if request.method == 'POST':
         form = CreateAccontForm(request.POST)
@@ -49,6 +54,8 @@ def create_account(request):
     else:
         form = CreateAccontForm()
     return render(request, 'create_account.html', {'form': form})
+    
+# Exibe o perfil do usuário autenticado, incluindo suas informações e notícias publicadas.
 @login_required
 def profile(request):
     user = request.user
@@ -56,6 +63,7 @@ def profile(request):
 
     return render(request, 'profile.html',{'user': user, 'noticias': noticias})  
 
+# Permite que um usuário autenticado edite uma notícia que ele publicou.
 @login_required
 def editar_noticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk)
@@ -73,7 +81,7 @@ def editar_noticia(request, pk):
 
     return render(request, 'editar_noticia.html', {'form': form, 'noticia': noticia})
 
-
+# Permite que um usuário autenticado apague uma notícia que ele publicou.
 @login_required
 def apagar_noticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk, autor_id=request.user.id)

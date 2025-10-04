@@ -62,17 +62,21 @@
         <div class="title-container">
             <h1>FutureNow, o futuro do blog começa aqui!</h1>
         </div>
+
         <div class="card">
+            <!-- Card para o formulário de login -->
             {% if form %}
             <form method="post">
+                <!-- Formulário de login -->
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Entrar</button>
             </form>
+            <!-- Link para redefinição de senha -->
             <a href="{% url 'password_reset' %}">Esqueceu a senha? Clique aqui!</a>
             <br>
             <br>
-
+            <!-- Link para criação de nova conta -->
             <a href="{% url 'create_account' %}">Ainda não tem conta criada? Clique aqui!</a>
             {% else %}
             <p>Erro ao carregar o formulário de login.</p>

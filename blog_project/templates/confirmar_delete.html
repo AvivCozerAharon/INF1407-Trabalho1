@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Notícia</title>
     <style>
         body {
-            background: linear-gradient(to bottom, #000EF0, #000000);
-            color: white;
+            color: black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,16 +16,12 @@
         }
 
         .card {
-            background: #111;
+            background: #FFFFFF;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             max-width: 400px;
             text-align: center;
-        }
-
-        h2 {
-            margin-bottom: 20px;
         }
 
         .btn {
@@ -52,7 +48,12 @@
         }
     </style>
 </head>
+
 <body>
+    <!--
+    Contém o cartão de confirmação para excluir uma notícia.
+    Inclui um formulário para confirmar a exclusão e um botão para cancelar.
+    -->
     <div class="card">
         <h2>Deseja excluir esta notícia?</h2>
         <p><strong>{{ noticia.titulo }}</strong></p>
@@ -63,4 +64,5 @@
         </form>
     </div>
 </body>
+
 </html>

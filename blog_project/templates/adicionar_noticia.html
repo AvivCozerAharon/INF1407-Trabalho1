@@ -1,3 +1,7 @@
+<!--
+Template: Adicionar Notícia
+Objetivo: Permite que os usuários adicionem notícias com título, conteúdo e imagem de capa.
+-->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -24,9 +28,17 @@
 </head>
 
 <body>
+    <!--
+    Seção Header
+    Inclui a barra de navegação.
+    -->
     {% include 'header.html' %}
     <div class="container">
         <div class="card">
+            <!--
+            Seção Formulário
+            Permite que os usuários insiram os detalhes da notícia e enviem.
+            -->
             <h1>Adicionar Notícia</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -39,6 +51,5 @@
         </div>
     </div>
 </body>
-
 
 </html>

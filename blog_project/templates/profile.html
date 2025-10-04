@@ -2,19 +2,19 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
     <style>
-
         .profile-container {
             max-width: 600px;
             margin: 50px auto;
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -87,9 +87,11 @@
                 height: 160px;
             }
         }
-</style></head>
+    </style>
+</head>
 
 <body>
+    <!-- Este bloco exibe as informações do perfil do usuário, incluindo nome, email, data de registro e um link para alterar a senha. -->
     <div class="profile-container">
         <h1>Perfil de {{ user.username }}</h1>
         <p><strong>Nome:</strong> {{ user.get_full_name }}</p>
@@ -97,7 +99,9 @@
         <p><strong>Data de registro:</strong> {{ user.date_joined|date:"d/m/Y H:i" }}</p>
         <a href="{% url 'password_reset' %}">Alterar minha senha</a>
     </div>
-    <div style="height: 60px;"></div> <!-- Espaço para o header fixo -->
+    <div style="height: 60px;"></div>
+
+    <!-- Além disso, lista as notícias criadas pelo usuário com opções para editar ou apagar cada uma. -->
     <h1 style="text-align: center; margin-top: 20px;color:white">Minhas Notícias</h1>
     <div class="container">
         <div class="grid">
@@ -114,14 +118,14 @@
                             📅 {{ noticia.data_publicacao|date:"d/m/Y H:i" }} <br>
                         </small>
                         {% if noticia.autor_id == request.user.id %}
-                            <div class="actions">
-                                <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <a href="{% url 'apagar_noticia' noticia.id %}" class="btn btn-delete">
-                                    <i class="fas fa-trash-alt"></i> Apagar
-                                </a>
-                            </div>
+                        <div class="actions">
+                            <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="{% url 'apagar_noticia' noticia.id %}" class="btn btn-delete">
+                                <i class="fas fa-trash-alt"></i> Apagar
+                            </a>
+                        </div>
                         {% endif %}
                     </div>
                 </a>
@@ -129,5 +133,8 @@
             {% empty %}
             <p>Nenhuma notícia disponível.</p>
             {% endfor %}
+        </div>
+    </div>
 </body>
+
 </html>
