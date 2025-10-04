@@ -87,6 +87,16 @@
                 height: 160px;
             }
         }
+
+        .spacer {
+            height: 60px;
+        }
+
+        .news-title {
+            text-align: center;
+            margin-top: 20px;
+            color: black;
+        }
     </style>
 </head>
 
@@ -99,10 +109,10 @@
         <p><strong>Data de registro:</strong> {{ user.date_joined|date:"d/m/Y H:i" }}</p>
         <a href="{% url 'password_reset' %}">Alterar minha senha</a>
     </div>
-    <div style="height: 60px;"></div>
+    <div class="spacer"></div>
 
     <!-- Além disso, lista as notícias criadas pelo usuário com opções para editar ou apagar cada uma. -->
-    <h1 style="text-align: center; margin-top: 20px;color:white">Minhas Notícias</h1>
+    <h1 class="news-title">Minhas Notícias</h1>
     <div class="container">
         <div class="grid">
             {% for noticia in noticias %}
