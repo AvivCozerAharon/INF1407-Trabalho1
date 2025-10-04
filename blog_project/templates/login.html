@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        /* Reset básico */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,39 +17,6 @@
             min-height: 100vh;
         }
 
-        /* HEADER */
-        header {
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        header nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        header nav a:hover {
-            color: #00ffff;
-        }
-
-        /* CONTAINER PRINCIPAL */
         .main-content {
             display: flex;
             justify-content: space-between;
@@ -60,20 +26,27 @@
             margin-top: 10px;
         }
 
-        /* TITULO */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 -4px 10px rgba(0, 0, 0, 0.3);
+        }
+
         .title-container {
-            color: #fff;
+            color: black;
             font-size: 3rem;
             font-weight: bold;
             max-width: 50%;
         }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 900px) {
             .main-content {
                 flex-direction: column;
                 padding: 12rem 5%;
             }
+
             .title-container {
                 max-width: 100%;
                 text-align: center;
@@ -84,17 +57,12 @@
 </head>
 
 <body>
-    <!-- HEADER -->
     {% include 'header.html' %}
-
-
-    <!-- CONTEÚDO PRINCIPAL -->
     <div class="main-content">
         <div class="title-container">
             <h1>FutureNow, o futuro do blog começa aqui!</h1>
         </div>
         <div class="card">
-            <h1>Login</h1>
             {% if form %}
             <form method="post">
                 {% csrf_token %}
@@ -104,7 +72,7 @@
             <a href="{% url 'password_reset' %}">Esqueceu a senha? Clique aqui!</a>
             <br>
             <br>
-            
+
             <a href="{% url 'create_account' %}">Ainda não tem conta criada? Clique aqui!</a>
             {% else %}
             <p>Erro ao carregar o formulário de login.</p>
